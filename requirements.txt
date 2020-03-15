@@ -1,4 +1,5 @@
-Django>=2.2
+Django==2.2
+pymysql
 mysqlclient
 django-mysql
 Pillow
