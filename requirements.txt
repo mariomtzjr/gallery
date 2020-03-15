@@ -2,4 +2,5 @@ Django==2.2
 pymysql
 mysqlclient
 django-mysql
+djangorestframework
 Pillow
