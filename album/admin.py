@@ -5,4 +5,4 @@ from album.models import Album
 # Register your models here.
 @admin.register(Album)
 class AlbumAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('title', 'created_at',)
