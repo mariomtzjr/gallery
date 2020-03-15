@@ -25,7 +25,7 @@ SECRET_KEY = '6l7dae8cz^^unhjhahdufxm$%f1j-=p4#il_2i#wu3^oqcb9t@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'api',
     'album',
+    'photo',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'pixyalbum.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS':  [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,8 +82,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'test',
         'USER': 'root',
-        'PASSWORD': 'password',
-        'HOST': 'db',
+        'PASSWORD': '',
+        'HOST': 'localhost',
         'PORT': 3306,
     }
 }
@@ -124,3 +126,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
