@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from album.models import Album
+from photo.models import Photo
 
 
 class AlbumCreateSerializer(serializers.ModelSerializer):
@@ -21,9 +22,7 @@ class AlbumListSerializer(serializers.ModelSerializer):
         read_only_fields = ('created_at', 'updated_at',)
 
 
-class AlbumUpdateSerializer(serializers.ModelSerializer):
-    pass
-
-
-class AlbumDeleteSerializer(serializers.ModelSerializer):
-    pass
+class PhotoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Photo
+        fields = '__all__'

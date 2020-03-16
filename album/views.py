@@ -1,18 +1,14 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from django.http import Http404
-from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_protect
-from django.views.generic.edit import FormView
 from django.http import HttpResponseRedirect
 from rest_framework import generics
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework import status
-from api.serializers import AlbumCreateSerializer, AlbumListSerializer
+from api.serializers import AlbumCreateSerializer, AlbumListSerializer, PhotoSerializer
 from album.models import Album
+from photo.models import Photo
 
 
 # Create your views here.
@@ -116,3 +112,23 @@ class AlbumDelete(generics.RetrieveUpdateDestroyAPIView):
         album = self.get_object(pk)
         album.delete()
         return redirect('album_list')
+
+
+class ImageGallery(generics.ListAPIView):
+
+    queryset = Album.objects.all()
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'album/image_gallery.html'
+
+    def get_object(self, pk):
+        try:
+            return Album.objects.get(pk=pk)
+        except Album.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        # album = self.get_object(pk)
+        photos = Photo.objects.all().filter(album=pk)
+        print(photos)
+        serializer = PhotoSerializer(photos)
+        return Response({'serializer': serializer, 'images': photos})

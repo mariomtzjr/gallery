@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div>
+    {% for image in images %}
+      <img src="{{image.image.url}}" alt="{{image.name}}" style="width:150px;">
+      <p>{{image.caption}}</p>
+    {% endfor %}
+
+  </div>
+{% endblock %}
