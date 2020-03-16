@@ -1,20 +1,33 @@
 {% extends 'base/base.html' %}
 
 {% load static %}
+
 {% block content %}
+    <div>
+      <h2 class="text-center w-auto p-3">Tus albums</h2>
+    </div>
     <div class="lista_ele d-flex justify-content-around flex-wrap">
         {% for album in albumes %}
         <div class="card" style="width: 18rem;">
-          <img src="" class="card-img-top" alt="...">
+          <img src="{% static '../static/img/base_album.png' %}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Album title</h5>
             <p class="card-text">{{ album.title }}</p>
-            <a href="" class="btn btn-primary">Editar</a>
-            <a href="{% url 'image_gallery' album.id %}" class="btn btn-primary">Ver fotos</a>
-            <a href="{% url 'album_delete' album.id %}" class="btn btn-danger">Eliminar</a>
+            <div class="btns-cards d-flex justify-content-around">
+              <a href="" class="btn btn-primary btn-custom"><i class="fas fa-edit"></i></a>
+              <a href="{% url 'image_gallery' album.id %}" class="btn btn-primary btn-custom">Ver fotos</a>
+              <a href="{% url 'album_delete' album.id %}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+            </div>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Created {{album.created_at}}</small>
           </div>
         </div>
     {% endfor %}
     </div>
 
+{% endblock%}
+
+{% block extrajs %}
+  <script src="{% static '../static/js/all.min.js' %}"></script>
 {% endblock%}

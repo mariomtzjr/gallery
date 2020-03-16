@@ -30,9 +30,29 @@ nav .salir {
 }
 
 .btn-custom {
-    background-color: #f2f2f2
+    width: auto;
+}
+
+.btn-custom:hover {
+    background-color: #e72981;
+    border-color: #e72981;
 }
 
 .nav-link {
     color: #e72981 !important;
 }
+
+.dropdown-item:hover, .dropdown-item:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #e72981 !important;
+}
+
+.fa-edit {
+    margin-left: 3px;
+}
+
+.card-img {
+    height: 60%;
+}
+

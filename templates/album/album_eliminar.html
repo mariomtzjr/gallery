@@ -3,7 +3,7 @@
 {% block content %}
     <form action="{% url 'album_delete' album.id %}" method="post">
         {% csrf_token %}
-        <div class="confirm-delete">
+        <div class="confirm-delete text-center">
             <h1 class="text-center">Eliminar registro</h1>
             <div>
                 <h4 class="m-t-2">¿Deseas eliminar el álbum " {{album.title}} "?</h4>

@@ -3,10 +3,22 @@
 
 {% block content %}
   <div>
+    <h2 class="text-center w-auto p-3">Tus fotos</h2>
+  </div>
+  <div class="d-flex justify-content-center">
     {% for image in images %}
-      <img src="{{image.image.url}}" alt="{{image.name}}" style="width:150px;">
-      <p>{{image.caption}}</p>
+      <div class="card" style="width: 18rem;">
+        <img src="{{image.image.url}}" class="card-img-top card-img" alt="{{image.caption}}">
+        <div class="card-body">
+          <h5 class="card-title">{{image.caption}}</h5>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Uploaded {{image.updated_at}}</small>
+        </div>
+      </div>
     {% endfor %}
 
   </div>
 {% endblock %}
+
+
