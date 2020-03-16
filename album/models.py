@@ -14,7 +14,6 @@ class Album(models.Model):
         choices=COVER_CHOICES,
         default='SOFT COVER',
     )
-    photos = models.ManyToManyField(Photo, related_name='+', blank=True)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
 
