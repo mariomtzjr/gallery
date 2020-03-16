@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+   <div class="form-crear w-75">
+    <h2 class="text-center w-auto p-3">Añade más fotos</h2>
+    {% for data in image %}
+    <form action="{% url 'photo_upload' data.id %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group">
+        <div class="form-group">
+            <label for="inpuPhoto" class="font-weight-bolder">Upload a new photo</label>
+            <input type="file" class="form-control-file" name="image">
+        </div>
+        <label for="inputAlbumTitle" class="font-weight-bolder">Caption</label>
+        <input type="text" class="form-control" placeholder="Set the caption of photo" name="caption">
+        <label for="inputAlbumTitle" class="font-weight-bolder">Álbum</label>
+        <input type="text" class="form-control" placeholder="Set the caption of photo" name="album"value="{{ data.id}}">
+      </div>
+      <button type="submit" class="btn btn-primary btn-custom">Crear</button>
+      <a href="{% url 'album_list' %}" class="btn btn-danger">Cancelar</a>
+    </form>
+
+  </div>
+{% endfor %}
+{% endblock %}
