@@ -16,10 +16,7 @@ class AlbumCreateSerializer(serializers.ModelSerializer):
 class AlbumListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Album
-        fields = (
-            'title',
-            'photos',
-        )
+        fields = '__all__'
 
         read_only_fields = ('created_at', 'updated_at',)
 

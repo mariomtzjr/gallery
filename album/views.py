@@ -85,3 +85,34 @@ class AlbumUpdate(generics.UpdateAPIView):
             return Response({'serializer': serializer, 'album': album})
         serializer.save()
         return redirect('album_list')
+
+
+class AlbumDelete(generics.RetrieveUpdateDestroyAPIView):
+    """Clase AlbumDelete
+    Descripción
+    Permite eliminar los registros (albumes) que se encuentran almacenados.
+    Métodos:
+        - get: Obtiene los objetos (albumes listadas)
+        - post: Envía la petición a la api (ruta album/eliminar) para
+        eliminar el album. Se pasa como argumento el id del registro
+        que pertenece al album.
+    """
+    queryset = Album.objects.all()
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'album/album_eliminar.html'
+
+    def get_object(self, pk):
+        try:
+            return Album.objects.get(pk=pk)
+        except Album.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        album = self.get_object(pk)
+        serializer = AlbumListSerializer(album)
+        return Response({'serializer': serializer, 'album': album})
+
+    def post(self, request, pk):
+        album = self.get_object(pk)
+        album.delete()
+        return redirect('album_list')
