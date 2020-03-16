@@ -10,7 +10,7 @@
 
 
 .card {
-    background-color: rgba(0,0,0,0.9);
+    background-color: rgba(0,0,0,0.8);
     color: #FFF;
 }
 
@@ -23,4 +23,16 @@ nav .salir {
 .especial {
     color: #FFF;
     text-align: center;
+}
+
+.bg-custom {
+    background-color: #f2f2f2;
+}
+
+.btn-custom {
+    background-color: #f2f2f2
+}
+
+.nav-link {
+    color: #e72981 !important;
 }

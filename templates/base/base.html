@@ -11,8 +11,9 @@
 </head>
 <body class="background-body">
     {% block nav%}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a class="navbar-brand" href="#">Pixyalbum</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
+
+      <img src="{% static '../static/img/logo_pixy.png' %}" alt="pixyalbum" width="134" height="43">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -31,9 +32,9 @@
           </li>
         </ul>
         <div class="form-inline my-2 my-lg-0 salir">
-          <div class="my-2 my-sm-0 mr-sm-4 font-weight-bold text-white">{{ user.username }}</div>
+          <div class="my-2 my-sm-0 mr-sm-4 font-weight-bold nav-link">{{ user.username }}</div>
         </div>
-        <a href="" class="my-2 my-sm-0 text-decoration-none">Salir</a>
+        <a href="" class="my-2 my-sm-0 text-decoration-none nav-link">Salir</a>
       </div>
     </nav>
     {% endblock %}
