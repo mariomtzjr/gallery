@@ -3,6 +3,7 @@
 {% block content %}
 
   <div class="form-crear w-75">
+    <h2 class="text-center w-auto p-3">Crea tu álbum</h2>
     <form action="{% url 'album_create' %}" method="post">
       {% csrf_token %}
       <div class="form-group">
@@ -19,11 +20,8 @@
           </select>
         </div>
       </div>
-      <!-- <div class="form-group">
-        <label for="inpuPhoto" class="font-weight-bolder">Upload your first photo</label>
-        <input type="file" class="form-control-file" name="photos">
-      </div> -->
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary btn-custom">Crear</button>
+      <a href="{% url 'album_list' %}" class="btn btn-danger">Cancelar</a>
     </form>
 
   </div>
