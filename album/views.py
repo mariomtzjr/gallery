@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from django.http import Http404
-from django.http import HttpResponseRedirect
 from rest_framework import generics
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
@@ -56,7 +55,6 @@ class AlbumCreate(generics.CreateAPIView):
             serializer.save()
             return redirect('album_list')
         else:
-            print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -88,7 +86,7 @@ class AlbumDelete(generics.RetrieveUpdateDestroyAPIView):
     Descripción
     Permite eliminar los registros (albumes) que se encuentran almacenados.
     Métodos:
-        - get: Obtiene los objetos (albumes listadas)
+        - get: Obtiene los objetos (albumes listados)
         - post: Envía la petición a la api (ruta album/eliminar) para
         eliminar el album. Se pasa como argumento el id del registro
         que pertenece al album.
@@ -115,7 +113,14 @@ class AlbumDelete(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ImageGallery(generics.ListAPIView):
-
+    """Clase ImageGallery
+    Descripción
+    Permite listar los registros (fotos) que se encuentran almacenados en un
+    álbum.
+    Métodos:
+        - get_object: obtiene el id del álbum para filtrar fotos
+        - get: Obtiene los objetos de un album (photos listadas)
+    """
     queryset = Album.objects.all()
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'album/image_gallery.html'
@@ -129,6 +134,5 @@ class ImageGallery(generics.ListAPIView):
     def get(self, request, pk, format=None):
         # album = self.get_object(pk)
         photos = Photo.objects.all().filter(album=pk)
-        print(photos)
         serializer = PhotoSerializer(photos)
         return Response({'serializer': serializer, 'images': photos})
