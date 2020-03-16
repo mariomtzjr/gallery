@@ -63,3 +63,25 @@ class AlbumCreate(generics.CreateAPIView):
             print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class AlbumUpdate(generics.UpdateAPIView):
+    """Clase AlbumUpdate
+    Descripción
+    Permite modificar los valores de los campos por los que está conformado
+    el modelo Album.
+    """
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'album/album_update.html'
+
+    def get(self, request, pk):
+        album = get_object_or_404(Album, pk=pk)
+        serializer = AlbumListSerializer(album)
+        return Response({'serializer': serializer, 'album': album})
+
+    def post(self, request, pk):
+        album = get_object_or_404(Album, pk=pk)
+        serializer = AlbumListSerializer(album, data=request.data)
+        if not serializer.is_valid():
+            return Response({'serializer': serializer, 'album': album})
+        serializer.save()
+        return redirect('album_list')
