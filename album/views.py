@@ -32,3 +32,34 @@ class AlbumList(generics.ListAPIView):
         queryset = Album.objects.all()
         serializer = AlbumListSerializer(queryset, many=True)
         return Response({'albumes': serializer.data})
+
+
+class AlbumCreate(generics.CreateAPIView):
+    """Clase AlbumCreate
+    Descripción:
+    Vista que renderiza un formulario personalizado para realizar
+    la creación/registro de un album.
+    Métodos:
+    - get: Realiza una consulta de los métodos que se encuentran creados
+    y los devuelve.
+    - post: Realiza el envío de datos a la api(/album/crear)
+    """
+    queryset = Album.objects.all()
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'album/album_crear.html'
+    serializer_class = AlbumCreateSerializer
+
+    def get(self, request, *args, **kwargs):
+        queryset = Album.objects.all()
+        serializer = AlbumCreateSerializer(queryset, many=True)
+        return Response({'albumes': serializer.data})
+
+    def post(self, request):
+        serializer = AlbumListSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return redirect('album_list')
+        else:
+            print(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+

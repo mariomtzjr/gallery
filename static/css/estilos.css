@@ -1,0 +1,26 @@
+.form-crear {
+    margin-top: 30px;
+    background-color: rgba(0,0,0,0.05);
+    padding: 10px;
+}
+
+.card {
+    margin: 10px;
+}
+
+
+.card {
+    background-color: rgba(0,0,0,0.9);
+    color: #FFF;
+}
+
+
+nav .salir {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.especial {
+    color: #FFF;
+    text-align: center;
+}

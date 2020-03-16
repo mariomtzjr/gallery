@@ -5,6 +5,7 @@ from album import views
 urlpatterns = [
 
     url(r'^album/listar/$', views.AlbumList.as_view(), name='album_list'),
+    url(r'^album/crear/$', views.AlbumCreate.as_view(), name='album_create')
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

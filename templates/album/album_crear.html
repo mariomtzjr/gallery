@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+  <div class="form-crear w-75">
+    <form action="{% url 'album_create' %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="inputAlbumTitle" class="font-weight-bolder">Album title</label>
+        <input type="text" class="form-control" placeholder="Set the name of Album" name="title">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputCover" class="font-weight-bolder">Cover</label>
+          <select id="inputCover" class="form-control" name="cover">
+            <option selected>Choose a cover</option>
+            <option>SOFT COVER</option>
+            <option>HARD COVER</option>
+          </select>
+        </div>
+      </div>
+      <!-- <div class="form-group">
+        <label for="inpuPhoto" class="font-weight-bolder">Upload your first photo</label>
+        <input type="file" class="form-control-file" name="photos">
+      </div> -->
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+  </div>
+
+{% endblock %}

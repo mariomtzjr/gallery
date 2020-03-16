@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Pixyalbum Test | Mario Martínez</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
 
 </head>
 <body class="background-body">
@@ -24,8 +25,8 @@
           <li class="nav-item dropdown show">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Albumes</a>
             <div class="dropdown-menu hide" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-              <a class="dropdown-item" href="">Crear</a>
-              <a class="dropdown-item" href="">Listar</a>
+              <a class="dropdown-item" href="{% url 'album_create' %}">Crear</a>
+              <a class="dropdown-item" href="{% url 'album_list' %}">Listar</a>
             </div>
           </li>
         </ul>
