@@ -5,8 +5,8 @@ from photo.models import Photo
 # Create your models here.
 class Album(models.Model):
     COVER_CHOICES = (
-            ('SC', 'SOFT COVER'),
-            ('HC', 'HARD COVER'),
+            ('SOFT COVER', 'SOFT COVER'),
+            ('HARD COVER', 'HARD COVER'),
     )
     title = models.CharField(max_length=100)
     cover = models.CharField(
