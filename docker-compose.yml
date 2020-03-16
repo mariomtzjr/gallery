@@ -4,7 +4,7 @@ services:
   mysql-db:
     image: mysql:5.7
     ports:
-      - '3306:3306'
+      - '33007:3306'
     environment:
        MYSQL_DATABASE: 'test'
        MYSQL_USER: 'admin'
