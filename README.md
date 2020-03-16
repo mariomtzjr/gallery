@@ -1,5 +1,7 @@
 # gallery
 
+## First Steps
+You need have installed Docker on your system.
 
 ### Set up
 Run de follow commands:
