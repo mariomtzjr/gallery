@@ -33,11 +33,8 @@ class PhotoUpload(generics.UpdateAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer = PhotoSerializer(data=request.data)
-        print(serializer)
-        print(serializer.is_valid())
         if serializer.is_valid():
             serializer.save()
             return redirect('album_list')
         else:
-            print(serializer.errors)
             return Response(serializer.errors, status=400)
