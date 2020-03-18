@@ -14,22 +14,24 @@ class PhotoUpload(generics.UpdateAPIView):
     template_name = 'photo/photo_upload.html'
     serializer_class = PhotoSerializer
 
-    def get_object(self, pk):
+    def get_object(self, *args, **kwargs):
         try:
-            return Album.objects.get(pk=pk)
+            pk = self.kwargs.get('pk', None)
+            return pk
         except Album.DoesNotExist:
             raise Http404
 
-    def get(self, request, pk, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
+        pk = self.get_object()
         photo = Photo.objects.all().filter(album=pk)
         album = Album.objects.all().filter(id=pk)
         serializer = PhotoSerializer(photo, many=True)
-        return Response({'serializer': serializer.data, 'image': album})
+        return Response({'serializer': serializer.data, 'image': album, 'pk': pk})
 
     def post(self, request, *args, **kwargs):
         serializer = PhotoSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return redirect('album_list')
+            return redirect('image_gallery')
         else:
             return Response(serializer.errors, status=400)
