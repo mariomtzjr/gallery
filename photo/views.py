@@ -1,16 +1,11 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import redirect
 from django.http import Http404
-from django.shortcuts import get_object_or_404
 from rest_framework import generics
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
-from api.serializers import PhotoSerializer, AlbumListSerializer
-from photo.forms import PhotoForm
+from api.serializers import PhotoSerializer
 from photo.models import Photo
 from album.models import Album
-
-from rest_framework.parsers import JSONParser
 
 
 class PhotoUpload(generics.UpdateAPIView):
