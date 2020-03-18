@@ -1,10 +1,12 @@
 # gallery
 
+## First Steps
+You need have installed Docker on your system.
 
 ### Set up
 Run de follow commands:
-`docker-compose build`
-`docker-compose up`
+1. `docker-compose build`  
+2. `docker-compose up`  
 
 ### Create a superuser
 To use the next command is necessary kown the container id. To knows it, you have to run this command first `docker ps`. The output column which name is CONTAINER ID has the value we need to create a super user.
