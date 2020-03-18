@@ -17,9 +17,12 @@
         </div>
       </div>
     {% endfor %}
+    {{image.album}}
   </div>
   <div>
-      <a href="" class="btn btn-primary">Add new photo</a>
+      {% for image in images %}
+      <a href="{% url 'photo_upload' image.album.id %}" class="btn btn-primary">Add new photo</a>
+      {% endfor %}
   </div>
 
 {% endblock %}

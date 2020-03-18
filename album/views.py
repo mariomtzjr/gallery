@@ -125,14 +125,15 @@ class ImageGallery(generics.ListAPIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'album/image_gallery.html'
 
-    def get_object(self, pk):
+    def get_object(self, *args, **kwargs):
         try:
-            return Album.objects.get(pk=pk)
+            pk = self.kwargs.get('pk', None)
+            return pk
         except Album.DoesNotExist:
             raise Http404
 
-    def get(self, request, pk, format=None):
-        # album = self.get_object(pk)
-        photos = Photo.objects.all().filter(album=pk)
+    def get(self, request, *args, **kwargs):
+        album = self.get_object()
+        photos = Photo.objects.all().filter(album=album)
         serializer = PhotoSerializer(photos)
         return Response({'serializer': serializer, 'images': photos})
