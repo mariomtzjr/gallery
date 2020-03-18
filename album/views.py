@@ -133,7 +133,7 @@ class ImageGallery(generics.ListAPIView):
             raise Http404
 
     def get(self, request, *args, **kwargs):
-        album = self.get_object()
-        photos = Photo.objects.all().filter(album=album)
+        album_id = self.get_object()
+        photos = Photo.objects.all().filter(album=album_id)
         serializer = PhotoSerializer(photos)
-        return Response({'serializer': serializer, 'images': photos})
+        return Response({'serializer': serializer, 'images': photos, 'pk': album_id})

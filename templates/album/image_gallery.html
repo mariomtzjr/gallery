@@ -16,13 +16,10 @@
           <small class="text-muted">Uploaded {{image.updated_at}}</small>
         </div>
       </div>
-    {% endfor %}
-    {{image.album}}
+      {% endfor %}
   </div>
   <div>
-      {% for image in images %}
-      <a href="{% url 'photo_upload' image.album.id %}" class="btn btn-primary">Add new photo</a>
-      {% endfor %}
+      <a href="{% url 'photo_upload' pk %}" class="btn btn-primary">Add new photo</a>
   </div>
 
 {% endblock %}
